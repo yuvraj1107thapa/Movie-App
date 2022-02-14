@@ -18,4 +18,4 @@ store.dispatch({
 
 console.log('After STATE', store.getState());
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App store={store}/>, document.getElementById('root'));
