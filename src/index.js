@@ -7,6 +7,15 @@ import App from './components/App';
 import movies from './reducers';
 
 const store = createStore(movies)
-console.log(store.getState());
+console.log('Store', store);
+
+console.log('Before STATE',store.getState());
+
+store.dispatch({
+    type: 'ADD_MOVIES',
+    movies: [ {name: 'Movie-1'} ]
+})
+
+console.log('After STATE', store.getState());
 
 ReactDOM.render(<App />, document.getElementById('root'));
