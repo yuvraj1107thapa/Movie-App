@@ -1,6 +1,6 @@
 import React from "react";
-import { data } from '../data';
 import { addMovieToList, handleMovieSearch } from '../actions';
+import { connect, StoreContext } from '..'
 
 class Navbar extends React.Component {
 
@@ -33,7 +33,7 @@ class Navbar extends React.Component {
                     <input onChange={this.handleChange}/>
                     <button id="search-btn" onClick={this.handleSearch}>Search</button>
                     {
-                        showSearchResult &&
+                        showSearchResult == true &&
                         <div className="search-results">
                             <div className="search-result">
                                 <img src={movie.Poster} alt="search-pic" />
@@ -54,4 +54,25 @@ class Navbar extends React.Component {
     }
 }
 
-export default Navbar;
+// class NavbarWrapper extends React.Component {
+//     render() {
+//       return (
+//         <StoreContext.Consumer>
+//           {(store) => {
+//             return <Navbar dispatch={store.dispatch} search={this.props.search} />
+//           }}
+//         </StoreContext.Consumer>
+//       )
+//     }
+//   }
+
+// export default NavbarWrapper;
+
+function mapStateToProps(state) {
+    return {
+        search: state.search
+    }
+}
+
+const connectedNavbarComponent = connect(mapStateToProps)(Navbar);
+export default connectedNavbarComponent;
